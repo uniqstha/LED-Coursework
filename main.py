@@ -1,5 +1,5 @@
 from tkinter import *
-
+#creating root window
 root = Tk()
 root.lift()
 root.geometry("1366x768+60+10")
