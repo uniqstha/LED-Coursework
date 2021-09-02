@@ -1,7 +1,7 @@
 from tkinter import *
 from PIL import Image,ImageTk
 
-
+#creating gui window
 root=Tk()
 root.title("Employee Login")
 root.geometry("1366x768+60+10")
