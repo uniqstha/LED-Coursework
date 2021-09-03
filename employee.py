@@ -1,10 +1,17 @@
 from tkinter import *
 from PIL import Image,ImageTk
-
+import os
 root=Tk()
 root.geometry("1366x768+60+10")
 root.title("Login")
 root.resizable(0, 0)
+
+#function
+def logout():
+    root.withdraw()
+    os.system("main.py")
+
+
 
 myimage=ImageTk.PhotoImage(Image.open('./images/empmanagement.png'))
 Label(image=myimage).pack()
@@ -22,7 +29,7 @@ employeeID.place(x=60,y=220)
 
 # buttons
 logoutBTN=Button(root,text="LOG OUT",font=('Consolas',13),cursor='hand2',
-                  bg="#687afd",border=0,activebackground="#687afd",padx=16)
+                  bg="#687afd",border=0,activebackground="#687afd",padx=16,command=logout)
 logoutBTN.place(x=1218,y=49)
 
 searchBTN=Button(root,text="Search",font=('Consolas',13),cursor='hand2',
