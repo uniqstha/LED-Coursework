@@ -10,6 +10,9 @@ root.resizable(0, 0)
 def logout():
     root.withdraw()
     os.system("main.py")
+def refresh():
+    root.destroy()
+    os.system('employee.py')
 
 
 
@@ -44,7 +47,7 @@ updateBTN=Button(root,text="UPDATE EMPLOYEE",font=('Consolas',13),cursor='hand2'
                   bg="#00bff3",border=0,activebackground="#00bff3",padx=85)
 updateBTN.place(x=65,y=380)
 refreshBTN=Button(root,text="Refresh",font=('Consolas',13),cursor='hand2',
-                  bg="#00bff3",border=0,activebackground="#00bff3")
+                  bg="#00bff3",border=0,activebackground="#00bff3",command=refresh)
 refreshBTN.place(x=313,y=178)
 
 exitBTN =Button(root,text="EXIT",font=('Consolas',13),cursor='hand2',
