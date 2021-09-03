@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import Image,ImageTk
 import os
+from tkinter import messagebox
 root=Tk()
 root.geometry("1366x768+60+10")
 root.title("Login")
@@ -13,6 +14,10 @@ def logout():
 def refresh():
     root.destroy()
     os.system('employee.py')
+def Exit():
+    sure = messagebox.askyesno("Exit", "Are you sure you want to exit?", parent=root)
+    if sure == True:
+        root.destroy()
 
 
 
@@ -51,7 +56,7 @@ refreshBTN=Button(root,text="Refresh",font=('Consolas',13),cursor='hand2',
 refreshBTN.place(x=313,y=178)
 
 exitBTN =Button(root,text="EXIT",font=('Consolas',13),cursor='hand2',
-                  bg="#00bff3",border=0,activebackground="#00bff3",padx=16)
+                  bg="#00bff3",border=0,activebackground="#00bff3",padx=16,command=Exit)
 exitBTN .place(x=185,y=675)
 
 root.mainloop()
