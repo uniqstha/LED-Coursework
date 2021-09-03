@@ -1,12 +1,27 @@
 from tkinter import *
 from PIL import Image,ImageTk
 import os
+import sqlite3
 from tkinter import messagebox
 from tkinter import ttk
 root=Tk()
 root.geometry("1366x768+60+10")
 root.title("Login")
 root.resizable(0, 0)
+
+# creating database
+conn = sqlite3.connect("EmployeeInfo.db")
+c = conn.cursor()
+
+c.execute("""CREATE TABLE employees(
+        FullName text,
+        Department text,
+        Age integer,
+        Gender text,
+       Contact integer,
+         Address text
+ )""")
+
 
 #function
 def logout():
@@ -92,5 +107,6 @@ my_tree.configure(yscrollcommand= scrollbary.set, xscrollcommand = scrollbarx.se
 scrollbary.place(relx=0.954, rely=0.203, width=22, height=548)
 scrollbarx.place(relx=0.307, rely=0.924, width=884, height=22)
 
-
+conn.commit()
+conn.close()
 root.mainloop()
