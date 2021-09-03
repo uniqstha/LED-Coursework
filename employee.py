@@ -83,5 +83,14 @@ my_tree.heading("Address",text = "Address", anchor = CENTER)
 
 my_tree.place(relx=0.307, rely=0.203, width=880, height=550)
 
+# Scrollbar
+scrollbarx = Scrollbar(root, orient=HORIZONTAL)
+scrollbary = Scrollbar(root, orient=VERTICAL)
+scrollbarx.configure(command=my_tree.xview)
+scrollbary.configure(command=my_tree.yview)
+my_tree.configure(yscrollcommand= scrollbary.set, xscrollcommand = scrollbarx.set)
+scrollbary.place(relx=0.954, rely=0.203, width=22, height=548)
+scrollbarx.place(relx=0.307, rely=0.924, width=884, height=22)
+
 
 root.mainloop()
