@@ -12,7 +12,9 @@ root.resizable(0, 0)
 def logout():
     root.withdraw()
     os.system("main.py")
-
+def refresh():
+    root.destroy()
+    os.system('admin.py')
 
 
 myimage=ImageTk.PhotoImage(Image.open('./images/adminmanagement.png'))
@@ -37,7 +39,7 @@ logoutBTN=Button(root,text="LOG OUT",font=('Consolas',13),cursor='hand2',
 logoutBTN.place(x=1218,y=49)
 
 refreshBTN=Button(root,text="Refresh",font=('Consolas',13),cursor='hand2',
-                  bg="#00bff3",border=0,activebackground="#00bff3")
+                  bg="#00bff3",border=0,activebackground="#00bff3",command=refresh)
 refreshBTN.place(x=313,y=178)
 
 searchBTN=Button(root,text="Search",font=('Consolas',13),cursor='hand2',
