@@ -17,6 +17,8 @@ def ok():
         messagebox.showinfo("","Blank Not Allowed")
     elif(uname=="admin"and password=="admin"):
         messagebox.showinfo("","Login Success")
+        root.withdraw()
+        os.system("admin.py")
     else:
         messagebox.showinfo("","Incorrect")
 
