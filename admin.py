@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import Image,ImageTk
 import os
+from tkinter import messagebox
 
 root=Tk()
 root.geometry("1366x768+60+10")
@@ -15,7 +16,10 @@ def logout():
 def refresh():
     root.destroy()
     os.system('admin.py')
-
+def Exit():
+    sure = messagebox.askyesno("Exit", "Are you sure you want to exit?", parent=root)
+    if sure == True:
+        root.destroy()
 
 myimage=ImageTk.PhotoImage(Image.open('./images/adminmanagement.png'))
 Label(image=myimage).pack()
@@ -59,7 +63,7 @@ deleteBTN=Button(root,text="DELETE EMPLOYEE",font=('Consolas',13),cursor='hand2'
 deleteBTN.place(x=65,y=432)
 
 exitBTN =Button(root,text="EXIT",font=('Consolas',13),cursor='hand2',
-                  bg="#00bff3",border=0,activebackground="#00bff3",padx=16)
+                  bg="#00bff3",border=0,activebackground="#00bff3",padx=16,command=Exit)
 exitBTN .place(x=185,y=675)
 
 root.mainloop()
