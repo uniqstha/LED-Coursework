@@ -2,6 +2,7 @@ from tkinter import *
 from PIL import Image,ImageTk
 import os
 from tkinter import messagebox
+from tkinter import ttk
 
 root=Tk()
 root.geometry("1366x768+60+10")
@@ -65,5 +66,27 @@ deleteBTN.place(x=65,y=432)
 exitBTN =Button(root,text="EXIT",font=('Consolas',13),cursor='hand2',
                   bg="#00bff3",border=0,activebackground="#00bff3",padx=16,command=Exit)
 exitBTN .place(x=185,y=675)
+my_tree = ttk.Treeview(root)
+my_tree['columns'] = ("Sno.","FullName", "Department", "Age","Gender", "Contact","Address")
+
+my_tree.column("#0", width =0, stretch=NO)
+my_tree.column("Sno.", anchor=CENTER,width=30)
+my_tree.column("FullName", anchor=CENTER,width=150)
+my_tree.column("Department", anchor=CENTER,width=120)
+my_tree.column("Age", anchor=CENTER,width=40)
+my_tree.column("Gender", anchor=CENTER,width=90)
+my_tree.column("Contact", anchor=CENTER,width=100)
+my_tree.column("Address", anchor=CENTER,width=100)
+
+my_tree.heading("#0", text = "", anchor = CENTER)
+my_tree.heading("Sno.", text = "Sno", anchor = CENTER)
+my_tree.heading("FullName", text = "FullName", anchor = CENTER)
+my_tree.heading("Department", text = "Department", anchor = CENTER)
+my_tree.heading("Age", text = "Age", anchor = CENTER)
+my_tree.heading("Gender", text = "Gender", anchor = CENTER)
+my_tree.heading("Contact", text = "Contact", anchor = CENTER)
+my_tree.heading("Address",text = "Address", anchor = CENTER)
+
+my_tree.place(relx=0.307, rely=0.203, width=880, height=550)
 
 root.mainloop()
