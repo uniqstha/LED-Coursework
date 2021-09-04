@@ -2,6 +2,7 @@ from tkinter import *
 from PIL import Image,ImageTk
 import os
 import addadmin
+import sqlite3
 from tkinter import messagebox
 from tkinter import ttk
 
@@ -15,6 +16,49 @@ root.resizable(0, 0)
 def adding():
     root.withdraw()
     addadmin.add()
+
+def update():
+    root.withdraw()
+    global my_img
+    global main
+    main = Toplevel()
+    main.geometry("1366x768+60+10")
+    main.title("Login")
+    main.resizable(0, 0)
+
+    my_img = ImageTk.PhotoImage(Image.open('images/update.png'))
+    my_label=Label(main,image=my_img).pack()
+    fullname_lbl = Label(main, text="Full Name", font=('Consolas', 15), bg="white")
+    fullname_lbl.place(x=180, y=200)
+    department_lbl = Label(main, text="Department", font=('Consolas', 15), bg="white")
+    department_lbl.place(x=720, y=200)
+    age_lbl = Label(main, text="Age", font=('Consolas', 15), bg="white")
+    age_lbl.place(x=180, y=290)
+    gender_lbl = Label(main, text="Gender", font=('Consolas', 15), bg="white")
+    gender_lbl.place(x=720, y=290)
+    contact_lbl = Label(main, text="Contact", font=('Consolas', 15), bg="white")
+    contact_lbl.place(x=180, y=380)
+    address_lbl = Label(main, text="Address", font=('Consolas', 15), bg="white")
+    address_lbl.place(x=720, y=380)
+
+    fullname = Entry(main, width=40, border=0, font=('Consolas', 15))
+    fullname.place(x=180, y=230)
+    department = Entry(main, width=40, border=0, font=('Consolas', 15))
+    department.place(x=720, y=230)
+    age = Entry(main, width=40, border=0, font=('Consolas', 15))
+    age.place(x=180, y=320)
+    gender = Entry(main, width=40, border=0, font=('Consolas', 15))
+    gender.place(x=720, y=320)
+    contact = Entry(main, width=40, border=0, font=('Consolas', 15))
+    contact.place(x=180, y=410)
+    address = Entry(main, width=40, border=0, font=('Consolas', 15))
+    address.place(x=720, y=410)
+    update_btn = Button(main, text="UPDATE", font=('Consolas', 15), cursor='hand2',
+                     bg="#00bff3", border=0, activebackground="#00bff3", padx=20, pady=10)
+    update_btn.place(x=550, y=630)
+    clear_btn = Button(main, text="CLEAR", font=('Consolas', 15), cursor='hand2',
+                       bg="#00bff3", border=0, activebackground="#00bff3", padx=25, pady=10)
+    clear_btn.place(x=715, y=630)
 
 def logout():
     root.withdraw()
@@ -62,7 +106,7 @@ addEmpBTN.place(x=75,y=330)
 
 
 updateBTN=Button(root,text="UPDATE EMPLOYEE",font=('Consolas',13),cursor='hand2',
-                  bg="#00bff3",border=0,activebackground="#00bff3",padx=85)
+                  bg="#00bff3",border=0,activebackground="#00bff3",padx=85,command=update)
 updateBTN.place(x=65,y=380)
 deleteBTN=Button(root,text="DELETE EMPLOYEE",font=('Consolas',13),cursor='hand2',
                   bg="#00bff3",border=0,activebackground="#00bff3",padx=85)
@@ -71,6 +115,11 @@ deleteBTN.place(x=65,y=432)
 exitBTN =Button(root,text="EXIT",font=('Consolas',13),cursor='hand2',
                   bg="#00bff3",border=0,activebackground="#00bff3",padx=16,command=Exit)
 exitBTN .place(x=185,y=675)
+conn = sqlite3.connect("EmployeeInfo.db")
+c = conn.cursor()
+c.execute('SELECT * ,oid from employees')
+records = c.fetchall()
+
 my_tree = ttk.Treeview(root)
 my_tree['columns'] = ("Sno.","FullName", "Department", "Age","Gender", "Contact","Address")
 
@@ -93,6 +142,10 @@ my_tree.heading("Contact", text = "Contact", anchor = CENTER)
 my_tree.heading("Address",text = "Address", anchor = CENTER)
 
 my_tree.place(relx=0.307, rely=0.203, width=880, height=550)
+count=0
+for record in records:
+    my_tree.insert(parent='',index='end',iid=count,text="Parent",values=(record[6],record[0],record[1],record[2],record[3],record[4],record[5]))
+    count+=1
 
 # Scrollbar
 scrollbarx = Scrollbar(root, orient=HORIZONTAL)
