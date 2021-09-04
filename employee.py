@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import Image,ImageTk
 import os
+import addemployee
 import sqlite3
 from tkinter import messagebox
 from tkinter import ttk
@@ -10,18 +11,19 @@ root.title("Login")
 root.resizable(0, 0)
 
 # creating database
-conn = sqlite3.connect("EmployeeInfo.db")
-c = conn.cursor()
+# conn = sqlite3.connect("EmployeeInfo.db")
+# c = conn.cursor()
 
-c.execute("""CREATE TABLE employees(
-        FullName text,
-        Department text,
-        Age integer,
-        Gender text,
-       Contact integer,
-         Address text
- )""")
-
+# c.execute("""CREATE TABLE employees(
+#         FullName text,
+#         Department text,
+#         Age integer,
+#         Gender text,
+#        Contact integer,
+#          Address text
+#  )""")
+# conn.commit()
+# conn.close()
 
 #function
 def logout():
@@ -34,6 +36,11 @@ def Exit():
     sure = messagebox.askyesno("Exit", "Are you sure you want to exit?", parent=root)
     if sure == True:
         root.destroy()
+
+def adding():
+    root.withdraw()
+
+    addemployee.add()
 
 
 
@@ -61,7 +68,7 @@ searchBTN=Button(root,text="Search",font=('Consolas',13),cursor='hand2',
 searchBTN.place(x=316,y=218)
 
 addEmpBTN=Button(root,text="ADD EMPLOYEE",font=('Consolas',13),cursor='hand2',
-                  bg="#00bff3",border=0,activebackground="#00bff3",padx=90)
+                  bg="#00bff3",border=0,activebackground="#00bff3",padx=90,command=adding)
 addEmpBTN.place(x=75,y=330)
 
 updateBTN=Button(root,text="UPDATE EMPLOYEE",font=('Consolas',13),cursor='hand2',
@@ -107,6 +114,4 @@ my_tree.configure(yscrollcommand= scrollbary.set, xscrollcommand = scrollbarx.se
 scrollbary.place(relx=0.954, rely=0.203, width=22, height=548)
 scrollbarx.place(relx=0.307, rely=0.924, width=884, height=22)
 
-conn.commit()
-conn.close()
 root.mainloop()
