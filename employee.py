@@ -5,6 +5,7 @@ import addemployee
 import sqlite3
 from tkinter import messagebox
 from tkinter import ttk
+
 root=Tk()
 root.geometry("1366x768+60+10")
 root.title("Login")
@@ -82,6 +83,12 @@ exitBTN =Button(root,text="EXIT",font=('Consolas',13),cursor='hand2',
                   bg="#00bff3",border=0,activebackground="#00bff3",padx=16,command=Exit)
 exitBTN .place(x=185,y=675)
 
+
+conn = sqlite3.connect("EmployeeInfo.db")
+c = conn.cursor()
+c.execute('SELECT * ,oid from employees')
+records = c.fetchall()
+
 my_tree = ttk.Treeview(root)
 my_tree['columns'] = ("Sno.","FullName", "Department", "Age","Gender", "Contact","Address")
 
@@ -105,6 +112,11 @@ my_tree.heading("Address",text = "Address", anchor = CENTER)
 
 my_tree.place(relx=0.307, rely=0.203, width=880, height=550)
 
+count=0
+for record in records:
+    my_tree.insert(parent='',index='end',iid=count,text="Parent",values=(record[6],record[0],record[1],record[2],record[3],record[4],record[5]))
+    count+=1
+
 # Scrollbar
 scrollbarx = Scrollbar(root, orient=HORIZONTAL)
 scrollbary = Scrollbar(root, orient=VERTICAL)
@@ -113,5 +125,6 @@ scrollbary.configure(command=my_tree.yview)
 my_tree.configure(yscrollcommand= scrollbary.set, xscrollcommand = scrollbarx.set)
 scrollbary.place(relx=0.954, rely=0.203, width=22, height=548)
 scrollbarx.place(relx=0.307, rely=0.924, width=884, height=22)
+
 
 root.mainloop()
