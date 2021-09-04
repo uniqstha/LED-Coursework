@@ -27,6 +27,50 @@ root.resizable(0, 0)
 # conn.close()
 
 #function
+def update():
+    root.withdraw()
+    global my_img
+    global main
+    main = Toplevel()
+    main.geometry("1366x768+60+10")
+    main.title("Login")
+    main.resizable(0, 0)
+
+    my_img = ImageTk.PhotoImage(Image.open('images/update.png'))
+    my_label=Label(main,image=my_img).pack()
+    fullname_lbl = Label(main, text="Full Name", font=('Consolas', 15), bg="white")
+    fullname_lbl.place(x=180, y=200)
+    department_lbl = Label(main, text="Department", font=('Consolas', 15), bg="white")
+    department_lbl.place(x=720, y=200)
+    age_lbl = Label(main, text="Age", font=('Consolas', 15), bg="white")
+    age_lbl.place(x=180, y=290)
+    gender_lbl = Label(main, text="Gender", font=('Consolas', 15), bg="white")
+    gender_lbl.place(x=720, y=290)
+    contact_lbl = Label(main, text="Contact", font=('Consolas', 15), bg="white")
+    contact_lbl.place(x=180, y=380)
+    address_lbl = Label(main, text="Address", font=('Consolas', 15), bg="white")
+    address_lbl.place(x=720, y=380)
+
+    fullname = Entry(main, width=25, border=0, font=('Consolas', 15))
+    fullname.place(x=180, y=230)
+    department = Entry(main, width=25, border=0, font=('Consolas', 15))
+    department.place(x=720, y=230)
+    age = Entry(main, width=25, border=0, font=('Consolas', 15))
+    age.place(x=180, y=320)
+    gender = Entry(main, width=25, border=0, font=('Consolas', 15))
+    gender.place(x=720, y=320)
+    contact = Entry(main, width=25, border=0, font=('Consolas', 15))
+    contact.place(x=180, y=410)
+    address = Entry(main, width=25, border=0, font=('Consolas', 15))
+    address.place(x=720, y=410)
+    update_btn = Button(main, text="UPDATE", font=('Consolas', 15), cursor='hand2',
+                        bg="#00bff3", border=0, activebackground="#00bff3", padx=20, pady=10)
+    update_btn.place(x=550, y=630)
+    clear_btn = Button(main, text="CLEAR", font=('Consolas', 15), cursor='hand2',
+                       bg="#00bff3", border=0, activebackground="#00bff3", padx=25, pady=10)
+    clear_btn.place(x=715, y=630)
+
+
 def logout():
     root.withdraw()
     os.system("main.py")
@@ -73,7 +117,7 @@ addEmpBTN=Button(root,text="ADD EMPLOYEE",font=('Consolas',13),cursor='hand2',
 addEmpBTN.place(x=75,y=330)
 
 updateBTN=Button(root,text="UPDATE EMPLOYEE",font=('Consolas',13),cursor='hand2',
-                  bg="#00bff3",border=0,activebackground="#00bff3",padx=85)
+                  bg="#00bff3",border=0,activebackground="#00bff3",padx=85,command=update)
 updateBTN.place(x=65,y=380)
 refreshBTN=Button(root,text="Refresh",font=('Consolas',13),cursor='hand2',
                   bg="#00bff3",border=0,activebackground="#00bff3",command=refresh)
