@@ -1,7 +1,35 @@
+import sqlite3
 from tkinter import *
+from tkinter import messagebox
 from PIL import Image,ImageTk
+import os
 
+def insert():
+    # database
+    con = sqlite3.connect("EmployeeInfo.db")
+    cur = con.cursor()
+    cur.execute("INSERT INTO employees VALUES(:FullName,:Department, :Age, :Gender, :Contact, :Address)",{
+        'FullName': fullname.get(),
+        'Department': department.get(),
+        'Age': age.get(),
+        'Gender': gender.get(),
+        'Contact': contact.get(),
+        'Address': address.get()
+    })
+    messagebox.showinfo("Employee", "Employee Added Sucessfully !")
 
+    con.commit()
+    con.close()
+    root.destroy()
+    os.system(('employee.py'))
+
+def clear():
+    fullname.delete(0,END)
+    department.delete(0,END)
+    age.delete(0,END)
+    gender.delete(0,END)
+    contact.delete(0,END)
+    address.delete(0, END)
 
 
 def add():
@@ -50,10 +78,10 @@ def add():
     address = Entry(root, width=40, border=0, font=('Consolas', 15))
     address.place(x=720, y=410)
     add_btn = Button(root, text="ADD", font=('Consolas', 15), cursor='hand2',
-                     bg="#00bff3", border=0, activebackground="#00bff3", padx=25, pady=10)
+                     bg="#00bff3", border=0, activebackground="#00bff3", padx=25, pady=10,command = insert)
     add_btn.place(x=560, y=630)
     clear_btn = Button(root, text="CLEAR", font=('Consolas', 15), cursor='hand2',
-                       bg="#00bff3", border=0, activebackground="#00bff3", padx=25, pady=10)
+                       bg="#00bff3", border=0, activebackground="#00bff3", padx=25, pady=10,command=clear)
     clear_btn.place(x=715, y=630)
 
 
