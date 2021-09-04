@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import Image,ImageTk
 import os
+import addadmin
 from tkinter import messagebox
 from tkinter import ttk
 
@@ -11,6 +12,10 @@ root.resizable(0, 0)
 
 
 #Functions
+def adding():
+    root.withdraw()
+    addadmin.add()
+
 def logout():
     root.withdraw()
     os.system("main.py")
@@ -52,7 +57,7 @@ searchBTN=Button(root,text="Search",font=('Consolas',13),cursor='hand2',
 searchBTN.place(x=316,y=218)
 
 addEmpBTN=Button(root,text="ADD EMPLOYEE",font=('Consolas',13),cursor='hand2',
-                  bg="#00bff3",border=0,activebackground="#00bff3",padx=90)
+                  bg="#00bff3",border=0,activebackground="#00bff3",padx=90,command=adding)
 addEmpBTN.place(x=75,y=330)
 
 
