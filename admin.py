@@ -13,6 +13,24 @@ root.resizable(0, 0)
 
 
 #Functions
+def search():
+    record_id = employeeID.get()
+    for record in my_tree.get_children():
+        my_tree.delete(record)
+
+    conn = sqlite3.connect("EmployeeInfo.db")
+    c = conn.cursor()
+
+    c.execute("SELECT rowid, * FROM employees WHERE FullName = ?", (record_id,))
+    records = c.fetchall()
+
+    for record in records:
+        my_tree.insert('', 'end', values=(record))
+
+    conn.commit()
+    conn.close()
+
+
 def adding():
     root.withdraw()
     addadmin.add()
@@ -157,7 +175,7 @@ refreshBTN=Button(root,text="Refresh",font=('Consolas',13),cursor='hand2',
 refreshBTN.place(x=313,y=178)
 
 searchBTN=Button(root,text="Search",font=('Consolas',13),cursor='hand2',
-                  bg="#00bff3",border=0,activebackground="#00bff3")
+                  bg="#00bff3",border=0,activebackground="#00bff3",command=search)
 searchBTN.place(x=316,y=218)
 
 addEmpBTN=Button(root,text="ADD EMPLOYEE",font=('Consolas',13),cursor='hand2',
