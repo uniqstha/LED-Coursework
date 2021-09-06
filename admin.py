@@ -13,6 +13,21 @@ root.resizable(0, 0)
 
 
 #Functions
+def delete():
+    if (employeeID.get()==""):
+        messagebox.showinfo("Error","Please select employee")
+    else:
+        root.withdraw()
+        conn = sqlite3.connect('EmployeeInfo.db')
+        c = conn.cursor()
+        c.execute('DELETE from employees WHERE oid= ' + employeeID.get())
+        print("Deleted successfully")
+
+        conn.commit()
+        conn.close()
+        employeeID.delete(0, END)
+        os.system("admin.py")
+
 def search():
     record_id = employeeID.get()
     for record in my_tree.get_children():
@@ -187,7 +202,7 @@ updateBTN=Button(root,text="UPDATE EMPLOYEE",font=('Consolas',13),cursor='hand2'
                   bg="#00bff3",border=0,activebackground="#00bff3",padx=85,command=update)
 updateBTN.place(x=65,y=380)
 deleteBTN=Button(root,text="DELETE EMPLOYEE",font=('Consolas',13),cursor='hand2',
-                  bg="#00bff3",border=0,activebackground="#00bff3",padx=85)
+                  bg="#00bff3",border=0,activebackground="#00bff3",padx=85,command=delete)
 deleteBTN.place(x=65,y=432)
 
 exitBTN =Button(root,text="EXIT",font=('Consolas',13),cursor='hand2',
