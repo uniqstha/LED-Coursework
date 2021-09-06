@@ -67,7 +67,7 @@ def save():
          'fullname':fullname.get(),
          'department':department.get(),
          'age': age.get(),
-         'gender': gender.get(),
+         'gender': var.get(),
          'contact':contact.get(),
          'address': address.get(),
          'oid': record_id
@@ -85,7 +85,7 @@ def clear():
     fullname.delete(0,END)
     department.delete(0,END)
     age.delete(0,END)
-    gender.delete(0,END)
+    var.delete(0,END)
     contact.delete(0,END)
     address.delete(0, END)
 
@@ -109,7 +109,7 @@ def update():
         global fullname
         global department
         global age
-        global gender
+        global var
         global contact
         global address
 
@@ -133,8 +133,16 @@ def update():
         department.place(x=720, y=230)
         age = Entry(main, width=40, border=0, font=('Consolas', 15))
         age.place(x=180, y=320)
-        gender = Entry(main, width=40, border=0, font=('Consolas', 15))
-        gender.place(x=720, y=320)
+        var = StringVar()
+        r1 = Radiobutton(main, text="Male", value="Male", variable=var, tristatevalue=0, font=('Consolas', 13),
+                         bg="white")
+        r1.place(x=720, y=320)
+        r2 = Radiobutton(main, text="Female", value="Female", variable=var, tristatevalue=0, font=('Consolas', 13),
+                         bg="white")
+        r2.place(x=800, y=320)
+        r3 = Radiobutton(main, text="Other", value="Other", variable=var, tristatevalue=0, font=('Consolas', 13),
+                         bg="white")
+        r3.place(x=900, y=320)
         contact = Entry(main, width=40, border=0, font=('Consolas', 15))
         contact.place(x=180, y=410)
         address = Entry(main, width=40, border=0, font=('Consolas', 15))
@@ -143,7 +151,7 @@ def update():
             fullname.insert(0, record[0])
             department.insert(0, record[1])
             age.insert(0, record[2])
-            gender.insert(0, record[3])
+            # var.insert(0, record[3])
             contact.insert(0, record[4])
             address.insert(0, record[5])
         update_btn = Button(main, text="UPDATE", font=('Consolas', 15), cursor='hand2',
