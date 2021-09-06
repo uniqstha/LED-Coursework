@@ -12,7 +12,7 @@ def insert():
         'FullName': fullname.get(),
         'Department': department.get(),
         'Age': age.get(),
-        'Gender': gender.get(),
+        'Gender': var.get(),
         'Contact': contact.get(),
         'Address': address.get()
     })
@@ -44,7 +44,7 @@ def add():
     global fullname
     global department
     global age
-    global gender
+    global var
     global contact
     global address
 
@@ -71,8 +71,14 @@ def add():
     department.place(x=720, y=230)
     age = Entry(root, width=40, border=0, font=('Consolas', 15))
     age.place(x=180, y=320)
-    gender = Entry(root, width=40, border=0, font=('Consolas', 15))
-    gender.place(x=720, y=320)
+    var = StringVar()
+    r1 = Radiobutton(root, text="Male", value="Male", variable=var, tristatevalue=0,font=('Consolas', 13),bg="white")
+    r1.place(x=720, y=320)
+    r2 = Radiobutton(root, text="Female", value="Female", variable=var, tristatevalue=0,font=('Consolas', 13),bg="white")
+    r2.place(x=800, y=320)
+    r3 = Radiobutton(root, text="Other", value="Other", variable=var, tristatevalue=0,font=('Consolas', 13),bg="white")
+    r3.place(x=900, y=320)
+
     contact = Entry(root, width=40, border=0, font=('Consolas', 15))
     contact.place(x=180, y=410)
     address = Entry(root, width=40, border=0, font=('Consolas', 15))
