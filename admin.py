@@ -8,7 +8,7 @@ from tkinter import ttk
 
 root=Tk()
 root.geometry("1366x768+60+10")
-root.title("Login")
+root.title("Administration Management")
 root.resizable(0, 0)
 root.iconbitmap('./images/3.ico')
 
