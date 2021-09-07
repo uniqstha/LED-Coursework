@@ -6,13 +6,14 @@ import sqlite3
 from tkinter import messagebox
 from tkinter import ttk
 
+#creating GUI window for admin management window
 root=Tk()
 root.geometry("1366x768+60+10")
 root.title("Administration Management")
 root.resizable(0, 0)
 root.iconbitmap('./images/3.ico')
 
-#Functions
+# functions used in admin management window
 def delete():
     if (employeeID.get()==""):
         messagebox.showinfo("Error","Please select employee")
@@ -50,8 +51,8 @@ def search():
 
 
 def adding():
-    root.withdraw()
     addadmin.add()
+
 def save():
     global main
     try:
@@ -104,8 +105,6 @@ def clear():
     address.delete(0, END)
 
 def update():
-    root.withdraw()
-    global my_img
     global main
 
     if employeeID.get()=="":
@@ -130,8 +129,10 @@ def update():
         global contact
         global address
 
+        # image used as background
         my_img = ImageTk.PhotoImage(Image.open('images/update.png'))
-        my_label = Label(main, image=my_img).pack()
+        Label(main, image=my_img).pack()
+        # labels created in update admin window
         fullname_lbl = Label(main, text="Full Name", font=('Consolas', 15), bg="white")
         fullname_lbl.place(x=180, y=200)
         department_lbl = Label(main, text="Department", font=('Consolas', 15), bg="white")
@@ -144,6 +145,8 @@ def update():
         contact_lbl.place(x=180, y=380)
         address_lbl = Label(main, text="Address", font=('Consolas', 15), bg="white")
         address_lbl.place(x=720, y=380)
+
+        # entry box created in update admin window
         fullname = Entry(main, width=40, border=0, font=('Consolas', 15))
         fullname.place(x=180, y=230)
         department = Entry(main, width=40, border=0, font=('Consolas', 15))
@@ -183,18 +186,17 @@ def logout():
     if response==1:
         root.withdraw()
         os.system("main.py")
-    else:
-        pass
-
 
 def refresh():
     root.destroy()
     os.system('admin.py')
+
 def Exit():
     sure = messagebox.askyesno("Exit", "Are you sure you want to exit?", parent=root)
     if sure == True:
         root.destroy()
 
+#design for admin management window
 myimage=ImageTk.PhotoImage(Image.open('./images/adminmanagement.png'))
 Label(image=myimage).pack()
 
@@ -239,6 +241,8 @@ deleteBTN.place(x=65,y=432)
 exitBTN =Button(root,text="EXIT",font=('Consolas',13),cursor='hand2',
                   bg="#00bff3",border=0,activebackground="#00bff3",padx=16,command=Exit)
 exitBTN .place(x=185,y=675)
+
+#treeview table created to show information stored in database
 conn = sqlite3.connect("EmployeeInfo.db")
 c = conn.cursor()
 c.execute('SELECT * ,oid from employees')
@@ -271,7 +275,7 @@ for record in records:
     my_tree.insert(parent='',index='end',iid=count,text="Parent",values=(record[6],record[0],record[1],record[2],record[3],record[4],record[5]))
     count+=1
 
-# Scrollbar
+# Scrollbar for tree view table
 scrollbarx = Scrollbar(root, orient=HORIZONTAL)
 scrollbary = Scrollbar(root, orient=VERTICAL)
 scrollbarx.configure(command=my_tree.xview)

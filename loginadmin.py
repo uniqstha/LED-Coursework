@@ -8,9 +8,11 @@ root.geometry("1366x768+60+10")
 root.resizable(0, 0)
 root.iconbitmap('./images/3.ico')
 
+#assigning e1 and e2 as global variable
 global e1
 global e2
 
+#functions used in loginadmin.py
 def ok():
     uname=e1.get()
     password=e2.get()
@@ -23,7 +25,7 @@ def ok():
     else:
         messagebox.showinfo("Login Failed", "Username or Password invalid.Try Again!")
 
-
+#design for the login admin window
 myimage=ImageTk.PhotoImage(Image.open('./images/adminlogin.png'))
 Label(image=myimage).pack()
 #e1 entry for username entry

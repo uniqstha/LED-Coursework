@@ -4,6 +4,7 @@ from tkinter import messagebox
 import os
 from PIL import Image,ImageTk
 
+#functions added for addemployee window
 def insert():
     try:
         fullname.get()
@@ -29,7 +30,7 @@ def insert():
             'Contact': contact.get(),
             'Address': address.get()
         })
-        messagebox.showinfo("Employee", "Employee Added Sucessfully !")
+        messagebox.showinfo("Employee", "Employee Added Successfully !")
 
         con.commit()
         con.close()
@@ -42,7 +43,6 @@ def clear():
     fullname.delete(0,END)
     department.delete(0,END)
     age.delete(0,END)
-    gender.delete(0,END)
     contact.delete(0,END)
     address.delete(0, END)
 
@@ -68,6 +68,7 @@ def add():
     root.geometry("1366x768+60+10")
     root.resizable(0, 0)
 
+    # labels created in update employee window
     fullname_lbl = Label(root, text="Full Name", font=('Consolas', 15), bg="white")
     fullname_lbl.place(x=180, y=200)
     department_lbl = Label(root, text="Department", font=('Consolas', 15), bg="white")
@@ -81,6 +82,7 @@ def add():
     address_lbl = Label(root, text="Address", font=('Consolas', 15), bg="white")
     address_lbl.place(x=720, y=380)
 
+    # entry box created in update employee window
     fullname = Entry(root, width=40, border=0, font=('Consolas', 15))
     fullname.place(x=180, y=230)
     department = Entry(root, width=40, border=0, font=('Consolas', 15))

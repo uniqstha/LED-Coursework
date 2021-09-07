@@ -4,6 +4,7 @@ import sqlite3
 from tkinter import messagebox
 from PIL import Image,ImageTk
 
+#functions added for addadmin window
 def insert():
     try:
         fullname.get()
@@ -30,7 +31,7 @@ def insert():
             'Contact': contact.get(),
             'Address': address.get()
         })
-        messagebox.showinfo("Employee", "Employee Added Sucessfully !")
+        messagebox.showinfo("Employee", "Employee Added Successfully !")
 
         con.commit()
         con.close()
@@ -63,7 +64,7 @@ def add():
     label1 = Label(root, image=myimage1)
     label1.pack()
 
-    # desgin
+    # label created in update employee window
     fullname_lbl = Label(root, text="Full Name", font=('Consolas', 15), bg="white")
     fullname_lbl.place(x=180, y=200)
     department_lbl = Label(root, text="Department", font=('Consolas', 15), bg="white")
@@ -77,6 +78,7 @@ def add():
     address_lbl = Label(root, text="Address", font=('Consolas', 15), bg="white")
     address_lbl.place(x=720, y=380)
 
+    # entry box created in update employee window
     fullname = Entry(root, width=40, border=0, font=('Consolas', 15))
     fullname.place(x=180, y=230)
     department = Entry(root, width=40, border=0, font=('Consolas', 15))

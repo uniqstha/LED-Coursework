@@ -10,10 +10,11 @@ root.geometry("1366x768+60+10")
 root.resizable(0, 0)
 root.iconbitmap('./images/2.ico')
 
-
+#assigning e1 and e2 as global variable
 global e1
 global e2
 
+#functions used in loginemp.py
 def ok():
     uname=e1.get()
     password=e2.get()
@@ -28,7 +29,7 @@ def ok():
         messagebox.showinfo("Login Failed", "Username or Password invalid")
 
 
-
+#design for the login employee window
 myimage=ImageTk.PhotoImage(Image.open('./images/login.png'))
 Label(image=myimage).pack()
 #e1 entry for username entry
