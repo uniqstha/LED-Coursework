@@ -16,23 +16,27 @@ def insert():
         messagebox.showinfo("Error", "Enter correct datatype in the entry boxes")
         root.destroy()
         os.system('employee.py')
+    if var.get() == '' or fullname.get() == '' or department.get() == '' or age.get() == '' or address.get() == '' or contact.get() == '':
+        messagebox.showinfo("Error", "Required information is not fulfilled")
+    else:
+        con = sqlite3.connect("EmployeeInfo.db")
+        cur = con.cursor()
+        cur.execute("INSERT INTO employees VALUES(:FullName,:Department, :Age, :Gender, :Contact, :Address)", {
+            'FullName': fullname.get(),
+            'Department': department.get(),
+            'Age': age.get(),
+            'Gender': var.get(),
+            'Contact': contact.get(),
+            'Address': address.get()
+        })
+        messagebox.showinfo("Employee", "Employee Added Sucessfully !")
 
-    con = sqlite3.connect("EmployeeInfo.db")
-    cur = con.cursor()
-    cur.execute("INSERT INTO employees VALUES(:FullName,:Department, :Age, :Gender, :Contact, :Address)",{
-        'FullName': fullname.get(),
-        'Department': department.get(),
-        'Age': age.get(),
-        'Gender': var.get(),
-        'Contact': contact.get(),
-        'Address': address.get()
-    })
-    messagebox.showinfo("Employee", "Employee Added Sucessfully !")
+        con.commit()
+        con.close()
+        root.destroy()
+        os.system(('employee.py'))
 
-    con.commit()
-    con.close()
-    root.destroy()
-    os.system(('employee.py'))
+
 
 def clear():
     fullname.delete(0,END)
