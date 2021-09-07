@@ -29,21 +29,24 @@ root.resizable(0, 0)
 # function
 # ------------------------------------------
 def search():
-    record_id = employeeID.get()
-    for record in my_tree.get_children():
-        my_tree.delete(record)
+    if (employeeID.get() == ""):
+        messagebox.showinfo("Error", "Enter FullName in Entry ID to search")
+    else:
+        record_id = employeeID.get()
+        for record in my_tree.get_children():
+            my_tree.delete(record)
 
-    conn = sqlite3.connect("EmployeeInfo.db")
-    c = conn.cursor()
+        conn = sqlite3.connect("EmployeeInfo.db")
+        c = conn.cursor()
 
-    c.execute("SELECT rowid, * FROM employees WHERE FullName = ?", (record_id,))
-    records = c.fetchall()
+        c.execute("SELECT rowid, * FROM employees WHERE FullName = ?", (record_id,))
+        records = c.fetchall()
 
-    for record in records:
-        my_tree.insert('', 'end', values=(record))
+        for record in records:
+            my_tree.insert('', 'end', values=(record))
 
-    conn.commit()
-    conn.close()
+        conn.commit()
+        conn.close()
 
 
 def save():
