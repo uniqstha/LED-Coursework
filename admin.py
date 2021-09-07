@@ -97,7 +97,6 @@ def clear():
     fullname.delete(0,END)
     department.delete(0,END)
     age.delete(0,END)
-    var.delete(0,END)
     contact.delete(0,END)
     address.delete(0, END)
 
