@@ -17,12 +17,12 @@ def delete():
     if (employeeID.get()==""):
         messagebox.showinfo("Error","Please select employee")
     else:
-        root.withdraw()
+
         conn = sqlite3.connect('EmployeeInfo.db')
         c = conn.cursor()
         c.execute('DELETE from employees WHERE oid= ' + employeeID.get())
-        print("Deleted successfully")
-
+        messagebox.showinfo("Delete", "Deleted Successfully!")
+        root.withdraw()
         conn.commit()
         conn.close()
         employeeID.delete(0, END)
