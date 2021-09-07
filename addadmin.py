@@ -5,7 +5,17 @@ import sqlite3
 from tkinter import messagebox
 
 def insert():
-    # database
+    try:
+        fullname.get()
+        department.get()
+        int(age.get())
+        var.get()
+        int(contact.get())
+        address.get()
+    except ValueError:
+        messagebox.showinfo("Error", "Enter correct datatype in the entry boxes")
+        root.destroy()
+        os.system('employee.py')
     con = sqlite3.connect("EmployeeInfo.db")
     cur = con.cursor()
     cur.execute("INSERT INTO employees VALUES(:FullName,:Department, :Age, :Gender, :Contact, :Address)",{
