@@ -15,7 +15,7 @@ def insert():
     except ValueError:
         messagebox.showinfo("Error", "Enter correct datatype in the entry boxes")
         root.destroy()
-        os.system('employee.py')
+        os.system('admin.py')
     con = sqlite3.connect("EmployeeInfo.db")
     cur = con.cursor()
     cur.execute("INSERT INTO employees VALUES(:FullName,:Department, :Age, :Gender, :Contact, :Address)",{
@@ -37,7 +37,6 @@ def clear():
     fullname.delete(0,END)
     department.delete(0,END)
     age.delete(0,END)
-    gender.delete(0,END)
     contact.delete(0,END)
     address.delete(0, END)
 
