@@ -177,8 +177,14 @@ def update():
         clear_btn.place(x=715, y=630)
 
 def logout():
-    root.withdraw()
-    os.system("main.py")
+    response = messagebox.askyesno('Confirm Logout', 'Are you sure to Logout? ')
+    if response==1:
+        root.withdraw()
+        os.system("main.py")
+    else:
+        pass
+
+
 def refresh():
     root.destroy()
     os.system('admin.py')
