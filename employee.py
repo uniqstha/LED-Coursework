@@ -48,6 +48,17 @@ def search():
 
 def save():
     global main
+    try:
+        fullname.get()
+        department.get()
+        int(age.get())
+        var.get()
+        int(contact.get())
+        address.get()
+    except ValueError:
+        messagebox.showinfo("Error", "Enter correct datatype in the entry boxes")
+        root.destroy()
+        os.system('employee.py')
     if var.get() == '' or fullname.get() == '' or department.get() == '' or age.get() == '' or address.get() == '' or contact.get() == '':
         messagebox.showinfo("Error", "Required information is not fulfilled")
     else:
@@ -93,6 +104,7 @@ def update():
     root.withdraw()
     global my_img
     global main
+
     if employeeID.get()=="":
         messagebox.showinfo("Error", "Please enter employee ID")
         os.system("employee.py")
