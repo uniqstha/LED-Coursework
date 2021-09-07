@@ -25,7 +25,7 @@ def ok():
         os.system("employee.py")
 
     else:
-        messagebox.showinfo("Login Failed", "Username or Password invalid.Try Again!")
+        messagebox.showinfo("Login Failed", "Username or Password invalid")
 
 
 
