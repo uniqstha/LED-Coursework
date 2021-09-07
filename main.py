@@ -6,11 +6,19 @@ root.lift()
 root.geometry("1366x768+60+10")
 root.title("Login Page")
 root.resizable(0, 0)
+root.iconbitmap('./images/1.ico')
 
+#functions used in the program
 def emp_login():
     root.withdraw()
     os.system("loginemp.py")
     root.deiconify()
+
+def admin_login():
+    root.withdraw()
+    os.system("loginadmin.py")
+    root.deiconify()
+
 
 
 label1 = Label(root)
@@ -27,7 +35,7 @@ Label(root,text='EMPLOYEE',bg='white',font=('Consolas',15)).place(x=455,y=410)
 
 
 button2 = Button(root,bg='white',fg='white',activebackground="white",relief="flat",overrelief="flat",borderwidth="0",
-                 cursor='hand2')
+                 cursor='hand2',command=admin_login)
 button2.place(x=774,y=330, width=146, height=100)
 img3 = PhotoImage(file="./images/admin_icon.png")
 button2.configure(image=img3)

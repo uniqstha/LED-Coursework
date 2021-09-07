@@ -8,7 +8,7 @@ root=Tk()
 root.title("Employee Login")
 root.geometry("1366x768+60+10")
 root.resizable(0, 0)
-
+root.iconbitmap('./images/2.ico')
 
 
 global e1
