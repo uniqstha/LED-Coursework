@@ -6,6 +6,7 @@ root.lift()
 root.geometry("1366x768+60+10")
 root.title("Login Page")
 root.resizable(0, 0)
+root.iconbitmap('./images/1.ico')
 
 def emp_login():
     root.withdraw()

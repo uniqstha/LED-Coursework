@@ -6,6 +6,7 @@ root=Tk()
 root.title("Admin Login")
 root.geometry("1366x768+60+10")
 root.resizable(0, 0)
+root.iconbitmap('./images/3.ico')
 
 global e1
 global e2
