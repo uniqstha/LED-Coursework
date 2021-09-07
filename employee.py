@@ -48,33 +48,37 @@ def search():
 
 def save():
     global main
+    if var.get() == '' or fullname.get() == '' or department.get() == '' or age.get() == '' or address.get() == '' or contact.get() == '':
+        messagebox.showinfo("Error", "Required information is not fulfilled")
+    else:
+        conn = sqlite3.connect('EmployeeInfo.db')
+        c = conn.cursor()
+        record_id = employeeID.get()
+        c.execute("""UPDATE employees SET
+                 FullName=:fullname,
+                 Department=:department,
+                 Age=:age,
+                 Gender=:gender,
+                 Contact=:contact,
+                 Address=:address
+                 WHERE oid =:oid""",
+                  {
+                      'fullname': fullname.get(),
+                      'department': department.get(),
+                      'age': age.get(),
+                      'gender': var.get(),
+                      'contact': contact.get(),
+                      'address': address.get(),
+                      'oid': record_id
+                  })
+        conn.commit()
+        conn.close()
+        messagebox.showinfo("Update", "Information Updated Succesfully")
+        employeeID.delete(0, END)
+        main.destroy()
+        os.system("employee.py")
 
-    conn = sqlite3.connect('EmployeeInfo.db')
-    c = conn.cursor()
-    record_id=employeeID.get()
-    c.execute("""UPDATE employees SET
-         FullName=:fullname,
-         Department=:department,
-         Age=:age,
-         Gender=:gender,
-         Contact=:contact,
-         Address=:address
-         WHERE oid =:oid""",
-         {
-         'fullname':fullname.get(),
-         'department':department.get(),
-         'age': age.get(),
-         'gender': var.get(),
-         'contact':contact.get(),
-         'address': address.get(),
-         'oid': record_id
-         })
-    conn.commit()
-    conn.close()
-    messagebox.showinfo("Update","Information Updated Succesfully")
-    employeeID.delete(0,END)
-    main.destroy()
-    os.system("employee.py")
+
 
 
 def clear():
