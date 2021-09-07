@@ -1,8 +1,8 @@
 import sqlite3
 from tkinter import *
 from tkinter import messagebox
-from PIL import Image,ImageTk
 import os
+from PIL import Image,ImageTk
 
 def insert():
     try:
@@ -48,6 +48,7 @@ def add():
     root = Toplevel()
     root.geometry("1366x768")
     root.title("Add Employee")
+    root.iconbitmap('./images/4.ico')
     myimage1 = ImageTk.PhotoImage(Image.open('./images/add.png'))
     label1 = Label(root, image=myimage1)
     label1.pack()

@@ -1,8 +1,8 @@
 from tkinter import *
-from PIL import Image, ImageTk
 import os
 import sqlite3
 from tkinter import messagebox
+from PIL import Image,ImageTk
 
 def insert():
     try:
@@ -46,6 +46,7 @@ def add():
     root.resizable(0, 0)
     root.geometry("1366x768+60+10")
     root.title("Add Employee")
+    root.iconbitmap('./images/4.ico')
     global fullname
     global department
     global age
