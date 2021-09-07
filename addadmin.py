@@ -39,6 +39,7 @@ def insert():
         os.system(('admin.py'))
 
 
+
 def clear():
     fullname.delete(0,END)
     department.delete(0,END)

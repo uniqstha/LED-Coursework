@@ -104,6 +104,7 @@ def clear():
 
 def update():
     global main
+    global my_img
 
     if employeeID.get()=="":
         messagebox.showinfo("Error", "Please enter employee ID")
@@ -198,7 +199,10 @@ def Exit():
         root.destroy()
 
 def adding():
+    root.withdraw()
     addemployee.add()
+
+
 
 
 #design for employee management window

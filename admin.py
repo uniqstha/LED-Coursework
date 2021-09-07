@@ -51,6 +51,7 @@ def search():
 
 
 def adding():
+    root.withdraw()
     addadmin.add()
 
 def save():
@@ -105,6 +106,7 @@ def clear():
     address.delete(0, END)
 
 def update():
+    global my_img
     global main
 
     if employeeID.get()=="":
