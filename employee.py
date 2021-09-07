@@ -182,8 +182,12 @@ def update():
 
 
 def logout():
-    root.withdraw()
-    os.system("main.py")
+    response = messagebox.askyesno('Confirm Logout', 'Are you sure to Logout? ')
+    if response == 1:
+        root.withdraw()
+        os.system("main.py")
+    else:
+        pass
 def refresh():
     root.destroy()
     os.system('employee.py')
