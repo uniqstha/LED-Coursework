@@ -18,14 +18,14 @@ def ok():
     uname=e1.get()
     password=e2.get()
     if(uname==""and password==""):
-        messagebox.showinfo("","Blank Not Allowed")
+        messagebox.showinfo("Login", "Enter Username and Password")
     elif(uname=="employee"and password=="employee"):
-        messagebox.showinfo("","Login Success")
+        messagebox.showinfo("Login Success", "Login Successfully!")
         root.withdraw()
         os.system("employee.py")
 
     else:
-        messagebox.showinfo("","Incorrect")
+        messagebox.showinfo("Login Failed", "Username or Password invalid")
 
 
 

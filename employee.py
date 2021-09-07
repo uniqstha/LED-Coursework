@@ -29,52 +29,70 @@ root.resizable(0, 0)
 # function
 # ------------------------------------------
 def search():
-    record_id = employeeID.get()
-    for record in my_tree.get_children():
-        my_tree.delete(record)
+    if (employeeID.get() == ""):
+        messagebox.showinfo("Error", "Enter FullName in Entry ID to search")
+    else:
+        record_id = employeeID.get()
+        for record in my_tree.get_children():
+            my_tree.delete(record)
 
-    conn = sqlite3.connect("EmployeeInfo.db")
-    c = conn.cursor()
+        conn = sqlite3.connect("EmployeeInfo.db")
+        c = conn.cursor()
 
-    c.execute("SELECT rowid, * FROM employees WHERE FullName = ?", (record_id,))
-    records = c.fetchall()
+        c.execute("SELECT rowid, * FROM employees WHERE FullName = ?", (record_id,))
+        records = c.fetchall()
 
-    for record in records:
-        my_tree.insert('', 'end', values=(record))
+        for record in records:
+            my_tree.insert('', 'end', values=(record))
 
-    conn.commit()
-    conn.close()
+        conn.commit()
+        conn.close()
 
 
 def save():
     global main
+    try:
+        fullname.get()
+        department.get()
+        int(age.get())
+        var.get()
+        int(contact.get())
+        address.get()
+    except ValueError:
+        messagebox.showinfo("Error", "Enter correct datatype in the entry boxes")
+        root.destroy()
+        os.system('employee.py')
+    if var.get() == '' or fullname.get() == '' or department.get() == '' or age.get() == '' or address.get() == '' or contact.get() == '':
+        messagebox.showinfo("Error", "Required information is not fulfilled")
+    else:
+        conn = sqlite3.connect('EmployeeInfo.db')
+        c = conn.cursor()
+        record_id = employeeID.get()
+        c.execute("""UPDATE employees SET
+                 FullName=:fullname,
+                 Department=:department,
+                 Age=:age,
+                 Gender=:gender,
+                 Contact=:contact,
+                 Address=:address
+                 WHERE oid =:oid""",
+                  {
+                      'fullname': fullname.get(),
+                      'department': department.get(),
+                      'age': age.get(),
+                      'gender': var.get(),
+                      'contact': contact.get(),
+                      'address': address.get(),
+                      'oid': record_id
+                  })
+        conn.commit()
+        conn.close()
+        messagebox.showinfo("Update", "Information Updated Succesfully")
+        employeeID.delete(0, END)
+        main.destroy()
+        os.system("employee.py")
 
-    conn = sqlite3.connect('EmployeeInfo.db')
-    c = conn.cursor()
-    record_id=employeeID.get()
-    c.execute("""UPDATE employees SET
-         FullName=:fullname,
-         Department=:department,
-         Age=:age,
-         Gender=:gender,
-         Contact=:contact,
-         Address=:address
-         WHERE oid =:oid""",
-         {
-         'fullname':fullname.get(),
-         'department':department.get(),
-         'age': age.get(),
-         'gender': var.get(),
-         'contact':contact.get(),
-         'address': address.get(),
-         'oid': record_id
-         })
-    conn.commit()
-    conn.close()
-    messagebox.showinfo("Update","Information Updated Succesfully")
-    employeeID.delete(0,END)
-    main.destroy()
-    os.system("employee.py")
+
 
 
 def clear():
@@ -89,6 +107,7 @@ def update():
     root.withdraw()
     global my_img
     global main
+
     if employeeID.get()=="":
         messagebox.showinfo("Error", "Please enter employee ID")
         os.system("employee.py")
@@ -163,8 +182,12 @@ def update():
 
 
 def logout():
-    root.withdraw()
-    os.system("main.py")
+    response = messagebox.askyesno('Confirm Logout', 'Are you sure to Logout? ')
+    if response == 1:
+        root.withdraw()
+        os.system("main.py")
+    else:
+        pass
 def refresh():
     root.destroy()
     os.system('employee.py')
