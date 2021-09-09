@@ -108,7 +108,7 @@ def update():
 
     if employeeID.get()=="":
         messagebox.showinfo("Error", "Please enter employee ID")
-        os.system("employee.py")
+
     else:
         main = Toplevel()
         main.geometry("1366x768+60+10")
@@ -275,7 +275,8 @@ my_tree.place(relx=0.307, rely=0.203, width=880, height=550)
 
 count=0
 for record in records:
-    my_tree.insert(parent='',index='end',iid=count,text="Parent",values=(record[6],record[0],record[1],record[2],record[3],record[4],record[5]))
+    my_tree.insert(parent='',index='end',iid=count,text="Parent",
+                   values=(record[6],record[0],record[1],record[2],record[3],record[4],record[5]))
     count+=1
 
 # Scrollbar for tree view table

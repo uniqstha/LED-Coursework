@@ -111,7 +111,6 @@ def update():
 
     if employeeID.get()=="":
         messagebox.showinfo("Error", "Please enter employee ID")
-        os.system("admin.py")
     else:
         main = Toplevel()
         main.geometry("1366x768+60+10")
