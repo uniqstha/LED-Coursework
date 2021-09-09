@@ -108,6 +108,7 @@ def clear():
 def update():
     global my_img
     global main
+    root.withdraw()
 
     if employeeID.get()=="":
         messagebox.showinfo("Error", "Please enter employee ID")
@@ -181,6 +182,7 @@ def update():
         clear_btn = Button(main, text="CLEAR", font=('Consolas', 15), cursor='hand2',
                            bg="#00bff3", border=0, activebackground="#00bff3", padx=25, pady=10, command=clear)
         clear_btn.place(x=715, y=630)
+
 
 def logout():
     response = messagebox.askyesno('Confirm Logout', 'Are you sure to Logout? ')

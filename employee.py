@@ -105,6 +105,7 @@ def clear():
 def update():
     global main
     global my_img
+    root.withdraw()
 
     if employeeID.get()=="":
         messagebox.showinfo("Error", "Please enter employee ID")
