@@ -105,12 +105,13 @@ def clear():
 def update():
     global main
     global my_img
-    root.withdraw()
 
     if employeeID.get()=="":
         messagebox.showinfo("Error", "Please enter employee ID")
+        root.deiconify()
 
     else:
+        root.withdraw()
         main = Toplevel()
         main.geometry("1366x768+60+10")
         main.title("Login")

@@ -108,11 +108,11 @@ def clear():
 def update():
     global my_img
     global main
-    root.withdraw()
 
     if employeeID.get()=="":
         messagebox.showinfo("Error", "Please enter employee ID")
     else:
+        root.withdraw()
         main = Toplevel()
         main.geometry("1366x768+60+10")
         main.title("Login")
